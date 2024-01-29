@@ -3,6 +3,7 @@
 // Do not change code below this line
 // This code will just display the questions to the screen
 let questionsElement = document.getElementById("questions");
+let storedArr = JSON.parse(sessionStorage.getItem("progress")??"[0,0,0,0,0]");
 const questions = [
   {
     question: "What is the capital of France?",
@@ -44,9 +45,13 @@ function renderQuestions() {
       choiceElement.setAttribute("type", "radio");
       choiceElement.setAttribute("name", `question-${i}`);
       choiceElement.setAttribute("value", choice);
-      if (userAnswers[i] === choice) {
-        choiceElement.setAttribute("checked", true);
-      }
+      // if (userAnswers[i] === choice) {
+      //   choiceElement.setAttribute("checked", true);
+      // }
+		choiceElement.addEventListener("change",() => {
+			storedArr[i] = question.choices[j];
+			sessionStorage.setItem("progress",JSON.stringify(storedArr));
+		})
       const choiceText = document.createTextNode(choice);
       questionElement.appendChild(choiceElement);
       questionElement.appendChild(choiceText);
