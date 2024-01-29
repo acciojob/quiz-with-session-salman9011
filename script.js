@@ -2,6 +2,7 @@
 
 // Do not change code below this line
 // This code will just display the questions to the screen
+let questionsElement = document.getElementById("questions");
 const questions = [
   {
     question: "What is the capital of France?",
